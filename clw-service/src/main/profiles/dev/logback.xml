@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-	<property name="app_name" value="golden"></property>
+	<property name="app_name" value="clw-service"></property>
 	<property name="LOG_HOME" value="D:/logs/${app_name}"></property>
 	<contextName>${app_name}</contextName>
 	

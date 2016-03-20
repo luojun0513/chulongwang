@@ -7,7 +7,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>golden-service</name>
+  <name>clw-service</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -15,7 +15,7 @@
 	  <org.springframework.version>3.2.15.RELEASE</org.springframework.version>
 	  <jdk.version>1.7</jdk.version>
 	  <com.alibaba.dubbo.version>2.5.3</com.alibaba.dubbo.version>
-	  <module.jar.name>golden-service</module.jar.name>
+	  <module.jar.name>clw-service</module.jar.name>
 	  <profiles.dir>src/main/profiles</profiles.dir>
 	  <maven.test.skip>true</maven.test.skip>
   </properties>
