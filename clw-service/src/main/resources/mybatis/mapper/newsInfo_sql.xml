@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.core.model.NewsInfo">
+	<resultMap id="BaseResultMap" type="com.clw.core.model.NewsInfo">
+		<id property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="author" column="author"/>
+		<result property="content" column="content"/>
+		<result property="imagesPath" column="imagesPath"/>
+		<result property="state" column="state"/>
+		<result property="createdTime" column="createdTime"/>
+		<result property="publishTime" column="publishTime"/>
+		<result property="closedTime" column="closedTime"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, title, author, content, imagesPath, state, createdTime, publishTime, closedTime
+	</sql>
+	
+	<insert id="insertNewsInfo" parameterType="com.clw.core.model.NewsInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into news_info (title, author, content, imagesPath, state, createdTime)
+		values(#{title},#{author},#{content},#{imagesPath},#{state},NOW())
+	</insert>
+	
+	<update id="updateNewsInfo" parameterType="com.clw.core.model.NewsInfo">
+		update news_info 
+		<set>
+			<if test="title != null">
+	    		title = #{title},
+	    	</if>
+	    	<if test="title != null">
+	    		author = #{author},
+	    	</if>
+	    	<if test="title != null">
+	    		content = #{content},
+	    	</if>
+	    	<if test="title != null">
+	    		imagesPath = #{imagesPath},
+	    	</if>
+	    	<if test="title != null">
+	    		state = #{state},
+	    	</if>
+	    	<if test="title != null">
+	    		createdTime = #{createdTime},
+	    	</if>
+	    	<if test="title != null">
+	    		publishTime = #{publishTime},
+	    	</if>
+	    	<if test="title != null">
+	    		closedTime = #{closedTime},
+	    	</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<!-- select tunnelInfo -->
+	<select id="findAllNews" resultMap="BaseResultMap" parameterType="com.clw.core.model.NewsInfo">
+		select 
+		<include refid="Base_Column_List" />
+		from news_info
+		where 1 = 1 order by publishTime desc
+	</select>
+
+	  <select id="selectNewsList" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from news_info
+	    <trim prefix="where" prefixOverrides="and ">
+	    	<if test="state != null">
+	    		and state = #{state,jdbcType=VARCHAR}
+	    	</if>
+	    </trim>
+	  </select>
+	  
+	  <select id="selectNewsList-count" resultType="java.lang.Integer" parameterType="java.util.HashMap" >
+	    select count(*) from news_info
+	    <trim prefix="where" prefixOverrides="and ">
+	    	<if test="state != null">
+	    		and state = #{state,jdbcType=VARCHAR}
+	    	</if>
+	    </trim>
+	  </select>
+
+ 	  <select id="selectNewsInfoById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from news_info 
+	    where id = #{id}
+	  </select>
+	  
+	  
+</mapper>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration >
+    <mappers>
+    	<mapper resource="mybatis/mapper/userInfo_sql.xml"/>
+    	<mapper resource="mybatis/mapper/newsInfo_sql.xml"/>
+    	<mapper resource="mybatis/mapper/productInfo_sql.xml"/>
+    </mappers> 
+</configuration>

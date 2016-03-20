@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clw.core.model.ProductInfo">
+	<resultMap id="BaseResultMap" type="com.clw.core.model.ProductInfo">
+		<id property="id" column="id"/>
+		<result property="prodNo" column="prodNo"/>
+		<result property="prodName" column="prodName"/>
+		<result property="prudSize" column="prudSize"/>
+		<result property="prevPest" column="prevPest"/>
+		<result property="proddesc" column="proddesc"/>
+		<result property="instruction" column="instruction"/>
+		<result property="imagesPath" column="imagesPath"/>
+		<result property="state" column="state"/>
+		<result property="userhot" column="userhot"/>
+		<result property="prodhot" column="prodhot"/>
+		<result property="createdTime" column="createdTime"/>
+		<result property="publishTime" column="publishTime"/>
+		<result property="remark" column="remark"/>
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, prodNo, prodName, prudSize, prevPest, proddesc, instruction, imagesPath, state,userhot,prodhot,createdTime,publishTime,remark
+	</sql>
+	
+	<insert id="insertProdInfo" parameterType="com.clw.core.model.ProductInfo" useGeneratedKeys="true" keyProperty="id">
+		insert into product_info (prodNo, prodName, prudSize, prevPest, proddesc, instruction, imagesPath, state,userhot,prodhot,createdTime,remark)
+		values(#{prodNo},#{prodName},#{prudSize},#{prevPest},#{proddesc},#{instruction},#{imagesPath},#{state},#{userhot},#{prodhot},NOW(),#{remark})
+	</insert>
+	
+	<update id="updateNewsInfo" parameterType="com.clw.core.model.NewsInfo">
+		update product_info 
+		<set>
+			<if test="prodNo != null">
+	    		prodNo = #{prodNo},
+	    	</if>
+	    	<if test="prodName != null">
+	    		prodName = #{prodName},
+	    	</if>
+	    	<if test="prudSize != null">
+	    		prudSize = #{prudSize},
+	    	</if>
+	    	<if test="prevPest != null">
+	    		prevPest = #{prevPest},
+	    	</if>
+	    	<if test="proddesc != null">
+	    		proddesc = #{proddesc},
+	    	</if>
+	    	<if test="instruction != null">
+	    		instruction = #{instruction},
+	    	</if>
+	    	<if test="imagesPath != null">
+	    		imagesPath = #{imagesPath},
+	    	</if>
+	    	<if test="state != null">
+	    		state = #{state},
+	    	</if>
+	    	<if test="userhot != null">
+	    		userhot = #{userhot},
+	    	</if>
+	    	<if test="prodhot != null">
+	    		prodhot = #{prodhot},
+	    	</if>
+	    	<if test="publishTime != null">
+	    		publishTime = #{publishTime},
+	    	</if>
+	    	<if test="remark != null">
+	    		remark = #{remark},
+	    	</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	 <select id="selectProdInfoById" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from product_info
+	    where id = #{id}
+	  </select>
+	
+	  <select id="selectProdList" resultMap="BaseResultMap" parameterType="java.util.HashMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from product_info
+	    <trim prefix="where" prefixOverrides="and ">
+	    	<if test="state != null">
+	    		and state = #{state}
+	    	</if>
+	    	<if test="state != null">
+	    		and userhot = #{userhot}
+	    	</if>
+	    	<if test="prodhot != null">
+	    		and prodhot = #{prodhot}
+	    	</if>
+	    </trim>
+	  </select>
+	  
+	  <select id="selectProdList-count" resultType="java.lang.Integer" parameterType="java.util.HashMap" >
+	    select count(*) from product_info
+	    <trim prefix="where" prefixOverrides="and ">
+	    	<if test="state != null">
+	    		and state = #{state}
+	    	</if>
+	    	<if test="state != null">
+	    		and userhot = #{userhot}
+	    	</if>
+	    	<if test="prodhot != null">
+	    		and prodhot = #{prodhot}
+	    	</if>
+	    </trim>
+	  </select>
+
+
+</mapper>
