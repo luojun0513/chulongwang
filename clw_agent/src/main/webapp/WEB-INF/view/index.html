@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html  style="height: 100%;">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title></title>
+
+<link href="${basePath}/css/museui/reset.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/icons.css" rel="stylesheet" type="text/css" />
+<link href="${basePath}/css/museui/stylesheet.css" rel="stylesheet" type="text/css" />
+<#include "/common/bootstrap.html">
+<script type='text/javascript' src='${basePath}/js/museui/actions.js'></script>
+
+</head>
+<body style="height: 100%;">
+	<div>
+		<table class="table table-bordered table-hover">
+				<tr>
+					<th>KEY</th>
+					<th>TYPE</th>
+				</tr>
+				<#if productInfos?exists>
+					<#list productInfos as productInfo> 
+	                   <tr>
+	                      <td>${productInfo.prodNo}</td>
+	                      <td>${productInfo.prodName}</td>
+	                   </tr>
+	                </#list>
+                </#if>
+			</table>
+	</div>
+</body>
+</html>
